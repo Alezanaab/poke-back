@@ -25,6 +25,7 @@ app.use(cors());
 
 // Import Models and controllers
 var models     = require('./models/tvshow')(app, mongoose);
+var pokemonModel    = require('./models/pokemon')(app, mongoose);
 
 
 var TVShowCtrl = require('./controllers/tvshows');
@@ -52,6 +53,7 @@ tvshows.route('/tvshows/:id')
 
 pokemons.route('/pokemons')
   .get(PokemonCtrl.findAll)
+  .post(PokemonCtrl.addFavPokemon);
 
 pokemons.route('/pokemons/:name')
   .get(PokemonCtrl.findByName);
