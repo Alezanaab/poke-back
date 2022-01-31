@@ -30,6 +30,7 @@ var pokemonModel    = require('./models/pokemon')(app, mongoose);
 
 var TVShowCtrl = require('./controllers/tvshows');
 var PokemonCtrl = require('./controllers/pokemons');
+var MyPokemonsCtrl = require('./controllers/mypokemons');
 
 // Example Route
 var router = express.Router();
@@ -41,6 +42,7 @@ app.use(router);
 // API routes
 var tvshows = express.Router();
 var pokemons = express.Router();
+var mypokemons = express.Router();
 
 tvshows.route('/tvshows')
   .get(TVShowCtrl.findAllTVShows)
@@ -58,10 +60,14 @@ pokemons.route('/pokemons')
 pokemons.route('/pokemons/:name')
   .get(PokemonCtrl.findByName);
 
+mypokemons.route('/mypokemons')
+  .get(MyPokemonsCtrl.findAll);
+
 
 
 app.use('/api', tvshows);
 app.use('/api', pokemons);
+app.use('/api', mypokemons);
 
 
 app.use(function(req, res, next) {

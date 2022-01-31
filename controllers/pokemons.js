@@ -41,18 +41,15 @@ exports.addFavPokemon = function (req, res) {
   console.log("POST");
   console.log(req.body);
 
-  /*var pokemon = new Pokemon({
-    title: req.body.title,
-    year: req.body.year,
-    country: req.body.country,
-    poster: req.body.poster,
-    seasons: req.body.seasons,
-    genre: req.body.genre,
-    summary: req.body.summary,
+  var pokemon = new Pokemon({
+    owner: req.body.owner,
+    info: req.body.info,
   });
 
-  pokemon.save(function (err, tvshow) {
+  console.log('pok', pokemon);
+
+  pokemon.save(function (err, pokemon) {
     if (err) return res.status(500).send(err.message);
-    res.status(200).jsonp(tvshow);
-  });*/
+    res.status(200).jsonp(pokemon);
+  });
 };
